@@ -10,8 +10,12 @@ print(our_list2)
 print(our_list1 == our_list2)
 
 # dicts
-countries_with_capitals = {'Ukraine': 'Kyiv', 'Brazil': 'Brasilia', 'Japan': 'Tokio', 'China': 'Beijing', 'Slovakia': 'Bratislava', 'Estonia': 'Tallinn'}
-countries_list = ['Ukraine', 'Russia', 'Kazakhstan', 'Moldova', 'Latvia', 'Lithuania', 'Belarus', 'Estonia', 'Uzbekistan', 'Georgia', 'Armenia', 'Tajikistan', 'Azeibarjan', 'Turkmenistan']
+countries_with_capitals = {'Ukraine': 'Kyiv', 'Brazil': 'Brasilia',
+                           'Japan': 'Tokio', 'China': 'Beijing',
+                           'Slovakia': 'Bratislava', 'Estonia': 'Tallinn'}
+countries_list = ['Ukraine', 'Russia', 'Kazakhstan', 'Moldova', 'Latvia',
+                  'Lithuania', 'Belarus', 'Estonia', 'Uzbekistan', 'Georgia',
+                  'Armenia', 'Tajikistan', 'Azeibarjan', 'Turkmenistan']
 
 for country in countries_list:
     if country in countries_with_capitals:
@@ -33,7 +37,7 @@ except ZeroDivisionError as e:
 try:
     file = open('read.txt', 'w')
 except:
-    #Some Code
+    # Some Code
     pass
 finally:
     pass
