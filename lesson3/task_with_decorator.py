@@ -18,8 +18,8 @@ def outer_decorator(number_of_executions):
 
 
 @outer_decorator(10)
-def go_to_python_com():
-    r.get('http://python.com')
+def go_to_python_org():
+    r.get('http://python.org')
 
 
-go_to_python_com()
+go_to_python_org()
