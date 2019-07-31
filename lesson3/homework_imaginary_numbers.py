@@ -1,5 +1,3 @@
-
-
 class ImaginaryNumber:
     """number in the form of x+yi"""
     IMAGINARY = "i"
