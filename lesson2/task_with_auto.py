@@ -12,6 +12,9 @@ class Automobile:
     def beep(self):
         print('Beep!')
 
+    def move(self):
+        print('Wroom')
+
     def __add__(self, other):
         result = self.get_seats() + other.get_seats()
         return result
@@ -33,6 +36,14 @@ class Bus(Automobile):
         print('BEEP-BEEP!')
 
 
+class Car(Automobile):
+    _seats = 5
+    _wheels = 4
+
+    def beep(self):
+        print('BEEP!')
+
+
 class ElectroCar(Automobile):
     _seats = 4
     _electro = True
@@ -41,10 +52,21 @@ class ElectroCar(Automobile):
         print('Wroom')
 
 
+class Lorry(Automobile):
+    _seats = 2
+    _electro = False
+
+    def move(self):
+        print('TU-TU!')
+
+
 car1 = ElectroCar()
-car2 = ElectroCar()
+lorry = Lorry()
+car2 = Car()
+bus = Bus()
 
 print(car1.__class__)
-print(car2.__class__)
-print(car1 == car2)
+print(lorry.__class__)
+print(lorry == bus)
+print(lorry+car1)
 print(-car1)
