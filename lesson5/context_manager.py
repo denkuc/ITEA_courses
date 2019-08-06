@@ -29,8 +29,7 @@ class File:
     def __exit__(self, *args):
         if args[0]:
             f.write(f"{args[0]}\n{args[1]}\n{args[2]}")
-        else:
-            self.file.close()
+        self.file.close()
 
 
 with File("Aaaa.txt", "w") as f:
