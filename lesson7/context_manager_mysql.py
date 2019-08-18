@@ -26,7 +26,7 @@ class CursorContextManager:
 
 
 config = {'user': 'root',
-          'password': 'password',
+          'password': 'denkuc',
           'host': '127.0.0.1',
           'database': 'employees'}
 
