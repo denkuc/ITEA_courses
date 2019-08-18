@@ -9,13 +9,8 @@ def thread_decorator(thread_name, is_daemon):
             print(f"{link_string} is downloading now")
             thread = Thread(target=func, args=thread_name, daemon=is_daemon)
             thread.start()
-            if not thread.is_alive():
-                print('File is downloaded')
         return wrapper
     return inner_decorator
-
-
-thread_generator = (f"Thread {i}" for i in range(10))
 
 
 @thread_decorator("Thread", False)
