@@ -1,5 +1,5 @@
 from lesson7.task_with_students_db.context_manager_mysql import \
-    MysqlContextManager, CursorContextManager
+    CursorMysqlContextManager
 from lesson7.task_with_students_db.student import StudentSerializer
 
 
@@ -29,13 +29,12 @@ class User:
         return self.__get_students_by_query(query)
 
     def __get_students_by_query(self, query):
-        with MysqlContextManager() as con:
-            with CursorContextManager(con) as cursor:
-                cursor.execute(query)
-                student_tuples = cursor.fetchall()
-                students = [self.__serializer.get_deserialized_student(student)
-                            for student in student_tuples]
-                return students
+        with CursorMysqlContextManager() as (connection, cursor):
+            cursor.execute(query)
+            student_tuples = cursor.fetchall()
+            students = [self.__serializer.get_deserialized_student(student)
+                        for student in student_tuples]
+            return students
 
     @staticmethod
     def __student_is_excellent(student):

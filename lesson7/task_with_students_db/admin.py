@@ -1,5 +1,5 @@
 from lesson7.task_with_students_db.context_manager_mysql import \
-    MysqlContextManager, CursorContextManager
+    CursorMysqlContextManager
 from lesson7.task_with_students_db.student import StudentSerializer, Student
 
 
@@ -26,10 +26,9 @@ class Admin:
 
     @staticmethod
     def __make_changes_in_db(query):
-        with MysqlContextManager() as con:
-            with CursorContextManager(con) as cursor:
-                cursor.execute(query)
-                con.commit()
+        with CursorMysqlContextManager() as (cursor, connection):
+            cursor.execute(query)
+            connection.commit()
 
 
 admin = Admin()
