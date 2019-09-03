@@ -1,4 +1,6 @@
+from marshmallow import Schema
 from mongoengine import *
+
 connect("students")
 
 
@@ -11,26 +13,40 @@ class Faculty(Document):
 
 
 class Student(Document):
-    full_name = StringField(max_length=100, required=True, unique=True)
+    full_name = StringField(max_length=100, required=True)
     group = IntField(max_value=99999)
     marks = ListField(IntField(max_value=100))
     curator = ReferenceField(Curator)
     faculty = ReferenceField(Faculty)
 
 
+class StudentSchema(Schema):
+    class Meta:
+        model = Student
+        fields = ['full_name', 'group', 'marks']
+
+
 def get_students_by_curator_name(curator_name):
-    curator_id = Curator.objects.filter(full_name=curator_name)
-    students = Student.objects.filter(curator=curator_id)
-    for s in students:
-        print(s)
+    try:
+        curator_id = Curator.objects.filter(full_name=curator_name)[0].id
+        students = Student.objects.filter(curator=curator_id)
+
+        return StudentSchema(many=True).dumps(students)
+    except IndexError:
+        return []
 
 
 def get_excellent_students_by_faculty(faculty):
-    faculty_id = Faculty.objects(name=faculty)
-    students = Student.objects(faculty=faculty_id)
-    excellent_students = [s for s in students if list(map(lambda mark: mark > 90, s.marks))]
-    for s in excellent_students:
-        print(s)
+    try:
+        faculty_id = Faculty.objects(name=faculty)[0].id
+        students = Student.objects(faculty=faculty_id)
+        excellent_students = [s for s in students
+                              if all(mark > 90 for mark in s.marks)]
+
+        return StudentSchema(many=True).dumps(excellent_students)
+    except IndexError:
+        return []
 
 
-# get_students_by_curator_name('Толик')
+print(get_students_by_curator_name('Юлия Владимировна'))
+print(get_excellent_students_by_faculty('МЕіМ'))
