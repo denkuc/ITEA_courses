@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product: {{ product.name }}</title>
+</head>
+<body>
+    <h2>Товар: {{ product.name }}</h2>
+    <h2>Описание товара: {{ product.description }}</h2>
+    <h2>Цена: {{ product.price }}</h2>
+    <h2>Осталось товара: {{ product.amount }}</h2>
+    <h2><a href="{{ product.category_href }}">Вернуться к категории</a></h2>
+</body>
+</html>
