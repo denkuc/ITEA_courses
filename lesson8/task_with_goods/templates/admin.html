@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панель</title>
+</head>
+<body>
+<table>
+    <td>
+ <form action="/add_category" method="post">
+  <p><b>Новая категория</b></p>
+  Название категории: <input type="text" name="name"><br>
+  <p><input type="submit" value="Добавить категорию"></p>
+ </form>
+</td>
+    <td>
+ <form action="/add_product" method="post">
+     <p><b>Новый товар</b></p>
+     Название продукта: <input type="text" name="name"><br>
+     Описание продукта: <input type="text" name="description"><br>
+     Индекс категории: <input type="text" name="category_id"><br>
+     Доступен для продажи: <input type="radio" name="available"><br>
+     Цена в копейках: <input type="text" name="price"><br>
+     Количество товара: <input type="text" name="amount"><br>
+     <p><input type="submit" value="Добавить продукт"></p>
+ </form>
+    </td>
+</table>
+</body>
+</html>
