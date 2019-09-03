@@ -25,15 +25,8 @@ def create_students(number):
     for i in range(number):
         student = Student()
         student.full_name = f'{choice(NAMES)} {choice(NAMES)}ченко'
-        curator = Curator.objects(full_name=choice(CURATORS))[0]
-        print(curator.full_name)
-        curator_id = curator.id
-        curator.save()
-        student.curator = curator_id
-        faculty = Faculty.objects(name=choice(FACULTIES))[0]
-        faculty_id = faculty.id
-        faculty.save()
-        student.faculty = faculty_id
+        student.curator = Curator.objects(full_name=choice(CURATORS))[0]
+        student.faculty = Faculty.objects(name=choice(FACULTIES))[0]
         student.group = choice(range(1, 6))*100 + choice(range(10))
         student.marks = [choice(range(86, 101)) for _ in range(5)]
         student.save()
