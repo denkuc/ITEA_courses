@@ -6,7 +6,7 @@ from lesson11.resourses.employees_resourse import EmployeeAPI
 app = Flask(__name__)
 api = Api(app)
 
-api.add_resource(EmployeeAPI, "/employee", "/employee/<int:id>")
+api.add_resource(EmployeeAPI, "/employee", "/employee/<string:id>")
 
 
 if __name__ == '__main__':
