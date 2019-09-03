@@ -5,11 +5,11 @@ connect("students")
 
 
 class Curator(Document):
-    full_name = StringField(max_length=100, required=True)
+    full_name = StringField(max_length=100, required=True, unique=False)
 
 
 class Faculty(Document):
-    name = StringField(max_length=100, required=True)
+    name = StringField(max_length=100, required=True, unique=False)
 
 
 class Student(Document):
@@ -42,6 +42,7 @@ def get_excellent_students_by_faculty(faculty):
         students = Student.objects(faculty=faculty_id)
         excellent_students = [s for s in students
                               if all(mark > 90 for mark in s.marks)]
+        print(excellent_students)
 
         return StudentSchema(many=True).dumps(excellent_students)
     except IndexError:
@@ -49,4 +50,4 @@ def get_excellent_students_by_faculty(faculty):
 
 
 print(get_students_by_curator_name('Юлия Владимировна'))
-print(get_excellent_students_by_faculty('МЕіМ'))
+print(get_excellent_students_by_faculty('ФЕтаУ'))

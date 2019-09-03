@@ -25,13 +25,12 @@ def create_database():
         tags_ids = []
         for tag_text in post_tags:
             try:
-                tag_id = Tag.objects(tag=tag_text.lower())[0].id
+                tag = Tag.objects(tag=tag_text.lower())[0]
             except IndexError:
                 tag = Tag()
                 tag.tag = tag_text.lower()
                 tag.save()
-                tag_id = tag.id
-            tags_ids.append(tag_id)
+            tags_ids.append(tag.id)
 
         print(tags_ids)
         post = Post()

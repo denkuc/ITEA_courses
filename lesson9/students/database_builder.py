@@ -12,15 +12,15 @@ FACULTIES = ['МЕіМ', 'КЕФ', 'ОЕФ', 'ФЕФ', 'АПК', 'ЮІ', 'ФІС
 
 
 def create_students(number):
-    # for curator_name in CURATORS:
-    #     curator = Curator()
-    #     curator.full_name = curator_name
-    #     curator.save()
-    #
-    # for faculty_name in FACULTIES:
-    #     faculty = Faculty()
-    #     faculty.name = faculty_name
-    #     faculty.save()
+    for curator_name in CURATORS:
+        curator = Curator()
+        curator.full_name = curator_name
+        curator.save()
+
+    for faculty_name in FACULTIES:
+        faculty = Faculty()
+        faculty.name = faculty_name
+        faculty.save()
 
     for i in range(number):
         student = Student()
