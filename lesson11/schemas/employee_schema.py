@@ -1,19 +1,18 @@
-from marshmallow import Schema, fields, validates, ValidationError
-from lesson11.models.employees import Role, Employee, Salary
+from marshmallow import Schema, fields
+from lesson11.models.employees import Role, Employee
 
 
-class SalarySchema(Schema):
+class RoleSchema(Schema):
     class Meta:
-        model = Salary
-        fields = ('amount', 'fee', 'comment')
-
-
-# class RoleSchema(Schema):
-#     class Meta:
-#         model = Role
+        model = Role
+        fields = ['name', 'experience']
 
 
 class EmployeeSchema(Schema):
+    payments = fields.List(fields.String())
+    role = fields.Nested(RoleSchema)
+    id = fields.String(dump_only=True)
+
     class Meta:
         model = Employee
-        fields = ('name', 'surname')
+        fields = ['id', 'name', 'surname', 'role', 'salary_payments']
