@@ -124,7 +124,6 @@ def added_suggestion(message):
     user = get_user(message)
     if user.suggestions:
         user.suggestions.append(message.text)
-        print(user.suggestions)
     else:
         user.suggestions = [message.text]
     user.state = None
